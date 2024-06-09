@@ -62,7 +62,6 @@ const MovieDetailsPage = () => {
             </NavLink>
           </li>
         </ul>
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
         <Routes>
           <Route path="/cast" element={<MovieCast />} />
           <Route path="/reviews" element={<MovieReviews />} />
