@@ -3,20 +3,35 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from '../../api/tmdb-api';
 import { Field, Form, Formik } from 'formik';
 import MovieList from '../../components/MovieList/ MovieList';
+import Loader from '../../components/Loader/Loader';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [noFound, setNoFound] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') || '';
 
   useEffect(() => {
     const fetchMovies = async () => {
-      if (query) {
-        const results = await fetchSearchMovies(query);
-        setMovies(results);
+      try {
+        setIsLoading(true);
+        setIsError(false);
+        if (query) {
+          const results = await fetchSearchMovies(query);
+          setNoFound(results.length === 0);
+          setMovies(results);
+        }
+      } catch {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
     };
+
     fetchMovies();
   }, [query]);
 
@@ -28,6 +43,7 @@ const MoviesPage = () => {
       setSearchParams({ query });
     }
   };
+
   return (
     <div>
       <div>
@@ -47,7 +63,14 @@ const MoviesPage = () => {
           </Form>
         </Formik>
       </div>
-      {movies && <MovieList movies={movies} />}
+      {isError && <ErrorMessage />}
+      {!isLoading && !isError && <MovieList movies={movies} />}
+      {isLoading && <Loader />}
+      {noFound && (
+        <p className={css.nofound}>
+          There are no movies you'd like... Please try again!
+        </p>
+      )}
     </div>
   );
 };

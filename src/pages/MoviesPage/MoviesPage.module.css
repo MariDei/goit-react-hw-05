@@ -44,3 +44,10 @@
   color: red;
   box-shadow: 1px 1px 1px 1px gray;
 }
+
+.nofound {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: black;
+}
