@@ -12,20 +12,28 @@ const MovieReviews = () => {
   }, [movieId]);
 
   return (
-    <div className={css.container}>
-      <h2 className={css.title}>Movie Reviews</h2>
-      <ul className={css.list}>
-        {reviews.map(review => (
-          <li className={css.item} key={review.id}>
-            <h3 className={css.author}>
-              <span className={css.span}>Author: </span>
-              {review.author}
-            </h3>
-            <p className={css.description}>{review.content}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      {reviews.length !== 0 ? (
+        <div className={css.container}>
+          <h2 className={css.title}>Movie Reviews</h2>
+          <ul className={css.list}>
+            {reviews.map(review => (
+              <li className={css.item} key={review.id}>
+                <h3 className={css.author}>
+                  <span className={css.span}>Author: </span>
+                  {review.author}
+                </h3>
+                <p className={css.description}>{review.content}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className={css.feedback}>
+          We don't have any reviews for this movie...
+        </div>
+      )}
+    </>
   );
 };
 

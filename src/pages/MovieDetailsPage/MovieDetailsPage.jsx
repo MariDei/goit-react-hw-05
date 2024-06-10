@@ -6,7 +6,6 @@ import {
   Route,
   useNavigate,
   useLocation,
-  Outlet,
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../../api/tmdb-api';
 import MovieCast from '../../components/MovieCast/MovieCast';
@@ -49,10 +48,12 @@ const MovieDetailsPage = () => {
           </p>
           <p>
             <span className={css.description}>Overview: </span>
+            <br />
             {movie.overview}
           </p>
           <p>
             <span className={css.description}>Genres: </span>
+            <br />
             {movie.genres.map(genre => (
               <span key={genre.id}>{genre.name} </span>
             ))}
@@ -77,7 +78,6 @@ const MovieDetailsPage = () => {
           <Route path="/cast" element={<MovieCast />} />
           <Route path="/reviews" element={<MovieReviews />} />
         </Routes>
-        <Outlet />
       </div>
     </>
   );

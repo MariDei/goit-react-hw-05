@@ -1,4 +1,5 @@
 import { InfinitySpin } from 'react-loader-spinner';
+import css from './Loader.module.css';
 
 const Loader = () => {
   return (
@@ -9,7 +10,7 @@ const Loader = () => {
         color="red"
         ariaLabel="infinity-spin-loading"
       />
-      <p>Loading... please wait...</p>
+      <p className={css.loader}>Loading... please wait...</p>
     </div>
   );
 };
