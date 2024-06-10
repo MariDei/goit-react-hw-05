@@ -1,18 +1,19 @@
 .list {
+  margin: 5px 15px;
   display: flex;
   flex-direction: column;
 }
 
 .item {
-  width: 100vh;
-  height: 30px;
-  margin: 5px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 2px 0;
   padding: 4px 8px;
   display: flex;
   align-items: center;
   color: azure;
   background-color: transparent;
-  box-shadow: inset 1px 1px 1px 1px gray;
+  box-shadow: inset 1px 1px 2px 1px gray;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);

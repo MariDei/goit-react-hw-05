@@ -30,7 +30,7 @@ const MoviesPage = () => {
   };
   return (
     <div>
-      <header className={css.header}>
+      <div>
         <Formik>
           <Form className={css.form} onSubmit={handleSearch}>
             <Field
@@ -46,7 +46,7 @@ const MoviesPage = () => {
             </button>
           </Form>
         </Formik>
-      </header>
+      </div>
       {movies && <MovieList movies={movies} />}
     </div>
   );

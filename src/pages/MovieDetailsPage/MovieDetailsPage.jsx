@@ -6,6 +6,7 @@ import {
   Route,
   useNavigate,
   useLocation,
+  Outlet,
 } from 'react-router-dom';
 import { fetchMovieDetails } from '../../api/tmdb-api';
 import MovieCast from '../../components/MovieCast/MovieCast';
@@ -76,7 +77,7 @@ const MovieDetailsPage = () => {
           <Route path="/cast" element={<MovieCast />} />
           <Route path="/reviews" element={<MovieReviews />} />
         </Routes>
-        {/* </Suspense> */}
+        <Outlet />
       </div>
     </>
   );
