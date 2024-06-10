@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from '../../api/tmdb-api';
 import { Field, Form, Formik } from 'formik';
 import MovieList from '../../components/MovieList/ MovieList';
-// import css from './MoviesPage.module.css';
+import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -22,25 +22,28 @@ const MoviesPage = () => {
 
   const handleSearch = async e => {
     e.preventDefault();
-    const form = e.target;
-    const query = form.elements.query.value;
+    const Form = e.target;
+    const query = Form.elements.query.value;
     if (query) {
       setSearchParams({ query });
     }
   };
   return (
     <div>
-      <header>
+      <header className={css.header}>
         <Formik>
-          <Form onSubmit={handleSearch}>
+          <Form className={css.form} onSubmit={handleSearch}>
             <Field
+              className={css.input}
               name="query"
               type="text"
               autoComplete="off"
               autoFocus
               placeholder="Search movies"
             />
-            <button type="submit">Search</button>
+            <button className={css.btn} type="submit">
+              Search
+            </button>
           </Form>
         </Formik>
       </header>

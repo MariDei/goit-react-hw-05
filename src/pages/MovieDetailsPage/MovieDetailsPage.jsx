@@ -10,7 +10,7 @@ import {
 import { fetchMovieDetails } from '../../api/tmdb-api';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
-// import css from './MovieDetailsPage.module.css'
+import css from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -27,37 +27,47 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <button onClick={() => navigate(backLink)}>Go back</button>
-      <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          width={300}
-          height={400}
-          alt={movie.title}
-        />
+      <button className={css.btn} onClick={() => navigate(backLink)}>
+        Go back
+      </button>
+      <div className={css.container}>
         <div>
-          <h2>{movie.title}</h2>
-          <p>User Score: {movie.vote_average}</p>
-          <h3>Overview</h3>
-          <p>{movie.overview}</p>
-          <h3>Genres</h3>
+          <img
+            className={css.image}
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            width={300}
+            height={400}
+            alt={movie.title}
+          />
+        </div>
+        <div className={css.info}>
+          <h2 className={css.title}>{movie.title}</h2>
           <p>
+            <span className={css.description}>User Score: </span>{' '}
+            {Math.round(movie.vote_average * 10)}%
+          </p>
+          <p>
+            <span className={css.description}>Overview: </span>
+            {movie.overview}
+          </p>
+          <p>
+            <span className={css.description}>Genres: </span>
             {movie.genres.map(genre => (
               <span key={genre.id}>{genre.name} </span>
             ))}
           </p>
         </div>
       </div>
-      <div>
-        <h3>Additional information</h3>
-        <ul>
+      <div className={css.wrapper}>
+        <h3 className={css.information}>Additional information</h3>
+        <ul className={css.list}>
           <li>
-            <NavLink to="cast" state={backLink}>
+            <NavLink className={css.link} to="cast" state={backLink}>
               Cast
             </NavLink>
           </li>
           <li>
-            <NavLink to="reviews" state={backLink}>
+            <NavLink className={css.link} to="reviews" state={backLink}>
               Reviews
             </NavLink>
           </li>

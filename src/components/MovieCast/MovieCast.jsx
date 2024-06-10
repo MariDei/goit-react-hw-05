@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCredits } from '../../api/tmdb-api';
-// import css from './MovieCast.module.css'
+import css from './MovieCast.module.css';
 
 const MovieCast = () => {
   const { movieId } = useParams();
@@ -14,11 +14,13 @@ const MovieCast = () => {
   const defaultImg =
     'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
   return (
-    <div>
-      <ul>
+    <div className={css.container}>
+      <h2 className={css.title}>Movie Cast</h2>
+      <ul className={css.list}>
         {cast.map(actor => (
-          <li key={actor.id}>
+          <li className={css.item} key={actor.id}>
             <img
+              className={css.image}
               src={
                 actor.profile_path
                   ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
@@ -28,8 +30,12 @@ const MovieCast = () => {
               height={350}
               alt="actor"
             />
-            <p>{actor.name}</p>
-            <p>Character: {actor.character}</p>
+            <p className={css.name}>{actor.name}</p>
+            <p className={css.character}>
+              Character:
+              <br />
+              <span className={css.span}>{actor.character}</span>
+            </p>
           </li>
         ))}
       </ul>
